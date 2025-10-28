@@ -12,24 +12,26 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # v4 e mai stabil; sau v5 dacă vrei nou
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4  # Sau @v5 pentru update
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven 
-          cache-dependency-path: pom.xml  
+          cache: maven
+          cache-dependency-path: java_project/pom.xml 
 
       - name: Build and test
         run: mvn --batch-mode --update-snapshots verify
+        working-directory: java_project 
 
       - name: Prepare artifacts
         run: mkdir staging && cp target/*.jar staging || echo "No JARs found"
+        working-directory: java_project
 
       - name: Upload JARs
         uses: actions/upload-artifact@v4
         with:
           name: java-package
-          path: staging
+          path: java_project/staging
