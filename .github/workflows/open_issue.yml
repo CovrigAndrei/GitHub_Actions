@@ -1,0 +1,15 @@
+name: Deschide un issue nou
+on: workflow_dispatch
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - run: |
+          gh issue --repo ${{ github.repository }} \
+            create --title "Titlul issue-ului" --body "Corpul issue-ului"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Transmiterea token-ului
