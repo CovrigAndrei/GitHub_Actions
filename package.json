@@ -1,9 +1,0 @@
-{
-  "name": "postgres-test-client",
-  "version": "1.0.0",
-  "description": "PostgreSQL connection test for GitHub Actions service containers",
-  "main": "client.js",
-  "dependencies": {
-    "pg": "^8.11.3" 
-  }
-}
