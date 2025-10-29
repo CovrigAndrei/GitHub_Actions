@@ -1,0 +1,10 @@
+name: TEST CRON VISIBILITY
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * *" # Ora 10 UTC
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Workflow is visible!"
